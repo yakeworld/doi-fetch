@@ -63,7 +63,7 @@ fn make_http(timeout_secs: u64, proxy_pool: Option<&str>) -> impl Fn(&str) -> Re
             );
             match Command::new("rproxy")
                 .args(["exec", "-i", pool, "-r", "6", "--"])
-                .arg(std::env::current_exe().unwrap_or_else(|_| "python3".into()))
+                .arg("python3")
                 .args(["-c", &code])
                 .stdout(Stdio::piped())
                 .stderr(Stdio::piped())
